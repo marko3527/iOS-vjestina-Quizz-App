@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class LoginViewController : UIViewController, UITextFieldDelegate {
+class LoginViewController : UIViewController {
     
     
     let gradient: CAGradientLayer = CAGradientLayer()
@@ -36,7 +36,7 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
     
     
     func buildViews() {
-        let nazivAplikacije = PopQuizLabel(labelText: "Pop Quiz")
+        let nazivAplikacije = PopQuizLabel(labelText: "Pop Quiz", fontSize: 40)
         self.view.addSubview(nazivAplikacije)
         
         nazivAplikacije.autoAlignAxis(toSuperviewAxis: .vertical)
@@ -44,7 +44,6 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
         nazivAplikacije.autoSetDimension(.height, toSize: 50)
         
         let email = PopQuizTextField(text: "Email")
-        email.delegate = self
         self.view.addSubview(email)
         
         
@@ -55,7 +54,6 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
         email.autoSetDimension(.height, toSize: 40)
         
         let pass = PopQuizTextField(text: "Password")
-        pass.delegate = self
         self.view.addSubview(pass)
         
         pass.autoAlignAxis(toSuperviewAxis: .vertical)
@@ -64,8 +62,8 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
         pass.autoPinEdge(toSuperviewSafeArea: .right, withInset: 20)
         pass.autoSetDimension(.height, toSize: 40)
         
-        
-        let login = PopQuizLoginButton(email: email, pass: pass)
+        let auth = AuthFacade(email: email, pass: pass)
+        let login = PopQuizLoginButton(auth: auth)
         self.view.addSubview(login)
         
         login.autoAlignAxis(toSuperviewAxis: .vertical)
@@ -75,5 +73,9 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
         login.autoSetDimension(.height, toSize: 40)
         
         
+        
     }
+    
+    
+    
 }

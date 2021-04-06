@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class PopQuizTextField : UITextField {
+class PopQuizTextField : UITextField, UITextFieldDelegate {
     
 
     required init?(coder aDecoder: NSCoder) {
@@ -24,18 +24,36 @@ class PopQuizTextField : UITextField {
         textColor = UIColor.white
         textAlignment = .center
         font = UIFont(name: "AvenirNext-HeavyItalic", size: 15)
+        addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        delegate = self
+    }
+    
+    func wrongInput(){
+        layer.borderColor = UIColor.red.withAlphaComponent(0.3).cgColor
+        layer.borderWidth = 3
+        text = ""
+    }
+    
+    private func textFieldIsBeingEdited() {
+        layer.borderWidth = 2
+        layer.borderColor = ColorsUtil.getBrown().cgColor
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        textFieldIsBeingEdited()
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textFieldIsBeingEdited()
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if(!(textField.layer.borderColor == UIColor.red.withAlphaComponent(0.5).cgColor)){
+            textField.layer.borderColor = ColorsUtil.getBrown().withAlphaComponent(0).cgColor
+        }
     }
     
 }
 
-extension PopQuizLabel : UITextFieldDelegate {
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        layer.borderWidth = 2.0
-        layer.borderColor = ColorsUtil.getBrown().withAlphaComponent(0.5).cgColor
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        layer.borderColor = ColorsUtil.getBrown().withAlphaComponent(0).cgColor
-    }
-}
+
