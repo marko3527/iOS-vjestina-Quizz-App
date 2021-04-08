@@ -2,14 +2,15 @@ import Foundation
 import UIKit
 import PureLayout
 
-class QuizzesViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
+class QuizzesViewController : UIViewController {
     
     let gradient: CAGradientLayer = CAGradientLayer()
-    private var quizes : [Quiz]!
-    private var quizFacade = QuizFacade()
+    private var quizService = QuizService()
     var tableView: QuizTableView!
+    var twController: TableViewController!
+    var funFact: QuizFunFactView!
     
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         buildViews()
@@ -58,45 +59,31 @@ class QuizzesViewController : UIViewController, UITableViewDelegate, UITableView
         dohvatiKvizove.autoPinEdge(toSuperviewSafeArea: .right, withInset: 20)
         dohvatiKvizove.autoSetDimension(.height, toSize: 40)
         
+        funFact = QuizFunFactView()
+        self.view.addSubview(funFact)
+        funFact.autoPinEdge(.top, to: .bottom, of: dohvatiKvizove, withOffset: 15)
+        funFact.autoPinEdge(toSuperviewSafeArea: .left, withInset: 20)
+        funFact.autoPinEdge(toSuperviewSafeArea: .right, withInset: 20)
+        
         tableView = QuizTableView()
+        twController = TableViewController()
+        tableView.delegate = twController
         tableView.register(QuizCell.self, forCellReuseIdentifier: "kviz")
-        tableView.dataSource = self
+        tableView.dataSource = twController
         self.view.addSubview(tableView)
         tableView.autoPinEdge(toSuperviewSafeArea: .left, withInset: 20)
         tableView.autoPinEdge(toSuperviewSafeArea: .right, withInset: 20)
-        tableView.autoPinEdge(.top, to: .bottom, of: dohvatiKvizove, withOffset: 50)
+        tableView.autoPinEdge(.top, to: .bottom, of: funFact, withOffset: 30)
         tableView.autoPinEdge(toSuperviewSafeArea: .bottom, withInset: 50)
-        
-        
-        
     }
     
     @objc
     func clicked(sender: UIButton!) {
-        quizes = quizFacade.getQuizes()
+        twController.setQuizes(quizes: quizService.getQuizes())
+        funFact.isHidden = false
+        funFact.setText(numberOfWordsWithNBA: quizService.countWordsWithNBA(quizes: quizService.getQuizes()))
         tableView.reloadData()
         
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(quizes == nil) {
-            return 0
-        }
-        else {
-            return quizes.count
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "kviz", for: indexPath) as! QuizCell
-        let quiz = quizes[indexPath.row]
-        cell.quizTitle.text = quiz.title
-        cell.quizDescription.text = quiz.description
-        cell.quizDifficulty.text = "" + quiz.level.description + "/3"
-        return cell
-    }
 }

@@ -3,6 +3,8 @@ import UIKit
 
 class QuizTableView: UITableView {
     
+    
+    
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
     }
@@ -19,7 +21,7 @@ class QuizTableView: UITableView {
     func makeTableView() {
         backgroundColor = UIColor.white.withAlphaComponent(0)
         separatorStyle = .none
-        rowHeight = 130
+        rowHeight = 150
     }
     
 }
