@@ -21,8 +21,7 @@ class PopQuizLoginButton : UIButton {
     }
     
     func makeLoginButton() {
-        backgroundColor = ColorsUtil.getBrown()
-        layer.opacity = 0.5
+        backgroundColor = ColorsUtil.getBrown().withAlphaComponent(0.7)
         layer.cornerRadius = 15.0
         setTitle("Login", for: .normal)
         addTarget(self, action: #selector(clicked), for: .touchUpInside)

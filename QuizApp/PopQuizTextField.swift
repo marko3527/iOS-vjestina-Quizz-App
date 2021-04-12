@@ -29,14 +29,24 @@ class PopQuizTextField : UITextField, UITextFieldDelegate {
     }
     
     func wrongInput(){
-        layer.borderColor = UIColor.red.withAlphaComponent(0.3).cgColor
+        layer.shadowColor = UIColor.red.withAlphaComponent(0.5).cgColor
+        layer.shadowRadius = 3.0
+        layer.shadowOpacity = 1
+        layer.shadowOffset = CGSize(width:4, height:4)
+        layer.masksToBounds = false
+        layer.borderColor = UIColor.red.withAlphaComponent(0.1  ).cgColor
         layer.borderWidth = 3
         text = ""
     }
     
     private func textFieldIsBeingEdited() {
-        layer.borderWidth = 2
+        layer.shadowColor = ColorsUtil.getBrown().cgColor
+        layer.shadowRadius = 3.0
+        layer.shadowOpacity = 1
+        layer.shadowOffset = CGSize(width:4, height:4)
+        layer.masksToBounds = false
         layer.borderColor = ColorsUtil.getBrown().cgColor
+        layer.borderWidth = 2
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -48,8 +58,9 @@ class PopQuizTextField : UITextField, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if(!(textField.layer.borderColor == UIColor.red.withAlphaComponent(0.5).cgColor)){
+        if(!(textField.layer.borderColor == UIColor.red.withAlphaComponent(0.1).cgColor)){
             textField.layer.borderColor = ColorsUtil.getBrown().withAlphaComponent(0).cgColor
+            layer.shadowOpacity = 0
         }
     }
     
