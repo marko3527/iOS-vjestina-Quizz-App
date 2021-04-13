@@ -55,6 +55,7 @@ class LoginViewController : UIViewController {
         
         let pass = PopQuizTextField(text: "Password")
         self.view.addSubview(pass)
+        pass.isSecureTextEntry = true
         
         pass.autoAlignAxis(toSuperviewAxis: .vertical)
         pass.autoPinEdge(.top,to: .bottom, of: email, withOffset: 20)
