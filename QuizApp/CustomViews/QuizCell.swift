@@ -28,7 +28,8 @@ class QuizCell : UITableViewCell {
     var quizDifficulty = UIImageView(image: UIImage(named: "oneStar"))
     var quizImage = UIImageView(image: UIImage(named: "sports"))
     
-    var spacedCell: UIView!
+    
+    private var spacedCell: UIView!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -42,10 +43,12 @@ class QuizCell : UITableViewCell {
         spacedCell.addSubview(quizDifficulty)
         spacedCell.addSubview(quizImage)
         
+        
         spacedCell.autoPinEdge(.top, to: .top, of: spacedCell.superview!, withOffset: 0)
         spacedCell.autoPinEdge(.leading, to: .leading, of: spacedCell.superview!,withOffset: 0)
         spacedCell.autoPinEdge(.trailing, to: .trailing, of: spacedCell.superview!, withOffset: 0)
         spacedCell.autoPinEdge(.bottom, to: .bottom, of: spacedCell.superview!, withOffset: -10)
+        
         
         quizTitle.autoPinEdge(.left, to: .left, of: quizTitle.superview!, withOffset: 120)
         quizTitle.autoPinEdge(.right, to: .right, of: quizTitle.superview!, withOffset: -20)
@@ -87,6 +90,4 @@ class QuizCell : UITableViewCell {
             quizDifficulty.image = UIImage(named: "oneStar")
         }
     }
-
-    
 }

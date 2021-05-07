@@ -5,6 +5,13 @@ class LoginViewController : UIViewController {
     
     
     let gradient: CAGradientLayer = CAGradientLayer()
+    private var auth: AuthFacade!
+    private var router: AppRouterProtocol!
+    
+    convenience init(router: AppRouterProtocol){
+        self.init()
+        self.router = router
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +56,8 @@ class LoginViewController : UIViewController {
         
         email.autoAlignAxis(toSuperviewAxis: .vertical)
         email.autoAlignAxis(toSuperviewAxis: .horizontal)
-        email.autoPinEdge(toSuperviewSafeArea: .left, withInset: 20)
-        email.autoPinEdge(toSuperviewSafeArea: .right, withInset: 20)
+        email.autoPinEdge(toSuperviewSafeArea: .leading, withInset: 20)
+        email.autoPinEdge(toSuperviewSafeArea: .trailing, withInset: 20)
         email.autoSetDimension(.height, toSize: 40)
         
         let pass = PopQuizTextField(text: "Password")
@@ -59,24 +66,29 @@ class LoginViewController : UIViewController {
         
         pass.autoAlignAxis(toSuperviewAxis: .vertical)
         pass.autoPinEdge(.top,to: .bottom, of: email, withOffset: 20)
-        pass.autoPinEdge(toSuperviewSafeArea: .left, withInset: 20)
-        pass.autoPinEdge(toSuperviewSafeArea: .right, withInset: 20)
+        pass.autoPinEdge(toSuperviewSafeArea: .leading, withInset: 20)
+        pass.autoPinEdge(toSuperviewSafeArea: .trailing, withInset: 20)
         pass.autoSetDimension(.height, toSize: 40)
         
-        let auth = AuthFacade(email: email, pass: pass)
-        let login = PopQuizLoginButton(auth: auth)
+        auth = AuthFacade(email: email, pass: pass)
+        let login = PopQuizButton(text: "Login")
         self.view.addSubview(login)
         
         login.autoAlignAxis(toSuperviewAxis: .vertical)
         login.autoPinEdge(.top, to: .bottom, of: pass, withOffset: 20)
-        login.autoPinEdge(toSuperviewSafeArea: .left, withInset: 20)
-        login.autoPinEdge(toSuperviewSafeArea: .right, withInset: 20)
+        login.autoPinEdge(toSuperviewSafeArea: .leading, withInset: 20)
+        login.autoPinEdge(toSuperviewSafeArea: .trailing, withInset: 20)
         login.autoSetDimension(.height, toSize: 40)
-        
-        
-        
+        login.addTarget(self, action: #selector(clicked), for: .touchUpInside)
+    
     }
     
-    
-    
+    @objc
+    func clicked(sender: UIButton!) {
+        if(auth.authenticate()) {
+            router.showQuizzesController()
+        }
+    }
+
+
 }

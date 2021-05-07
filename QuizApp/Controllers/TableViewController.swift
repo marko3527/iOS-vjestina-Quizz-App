@@ -4,8 +4,14 @@ import UIKit
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private var listOfQuizes : [Quiz]!
-    var mappedCategories:[QuizCategory:[Quiz]]!
+    private var mappedCategories:[QuizCategory:[Quiz]]!
+    private var router: AppRouterProtocol!
     private var quizService = QuizService()
+    
+    convenience init(router: AppRouterProtocol) {
+        self.init()
+        self.router = router
+    }
     
     func setQuizes(quizes: [Quiz]) {
         listOfQuizes = quizes
@@ -41,6 +47,8 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let quiz = mappedCategories[indexPath.section].value[indexPath.row]
+        router.showQuizController(quiz: quiz)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -61,5 +69,6 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         label.autoPinEdge(.top, to: .top, of: label.superview!)
         return sectionHeader
     }
+    
     
 }

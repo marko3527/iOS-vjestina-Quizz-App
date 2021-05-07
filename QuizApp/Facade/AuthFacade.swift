@@ -10,16 +10,18 @@ class AuthFacade {
         self.pass = pass
     }
     
-    func authenticate() -> String{
+    func authenticate() -> Bool{
         let dataService = DataService()
         let login = dataService.login(email: getEmailText(), password: getPassText())
         switch login {
         case .success:
-            return(getEmailText() + " " + getPassText())
+            print(getEmailText() + " " + getPassText())
+            return true
         case .error(_, _):
             email.wrongInput()
             pass.wrongInput()
-            return("" + getEmailText() + " " + getPassText() + "  error")
+            print("" + getEmailText() + " " + getPassText() + "  error")
+            return false
         }
     }
     
