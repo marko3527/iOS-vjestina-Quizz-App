@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class QuestionView: UIViewController {
+class QuestionViewController: UIViewController {
     
     private var question: Question!
     var answerButtons = [PopQuizButton]()

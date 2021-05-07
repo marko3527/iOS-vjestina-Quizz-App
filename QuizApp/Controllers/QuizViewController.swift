@@ -5,7 +5,7 @@ import PureLayout
 class QuizViewController: UIViewController {
     
     let gradient: CAGradientLayer = CAGradientLayer()
-    var quiz: Quiz!
+    private var quiz: Quiz!
     private var router: AppRouterProtocol!
     
     convenience init(quiz: Quiz, router: AppRouterProtocol) {
@@ -55,8 +55,15 @@ class QuizViewController: UIViewController {
         questionNumber.autoPinEdge(toSuperviewSafeArea: .leading,
                           withInset: 15)
         
+        let firstQuestion = QuestionView(question: quiz.questions[0])
         
-        let questionTracker = QuestionTrackerView()
-        self.addChild(questionTracker)
+        view.addSubview(firstQuestion)
+        firstQuestion.autoPinEdge(toSuperviewEdge: .leading)
+        firstQuestion.autoPinEdge(toSuperviewEdge: .trailing)
+        firstQuestion.autoPinEdge(.top, to: .bottom, of: questionNumber, withOffset: 50)
+        
+
     }
+    
+    
 }

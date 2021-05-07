@@ -11,7 +11,7 @@
 		5211AD3F261F83BB00CBDF97 /* QuizService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211AD3E261F83BB00CBDF97 /* QuizService.swift */; };
 		5211AD42261F847700CBDF97 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211AD41261F847700CBDF97 /* TableViewController.swift */; };
 		5211AD45261FB21800CBDF97 /* QuizFunFactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211AD44261FB21800CBDF97 /* QuizFunFactView.swift */; };
-		522873802645704E003D11F0 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228737F2645704E003D11F0 /* QuestionView.swift */; };
+		522873802645704E003D11F0 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228737F2645704E003D11F0 /* QuestionViewController.swift */; };
 		5228738726459A8F003D11F0 /* QuestionTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228738626459A8F003D11F0 /* QuestionTrackerView.swift */; };
 		524637A6264097F100208011 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524637A5264097F100208011 /* AppRouter.swift */; };
 		524637AC2641B3A200208011 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524637AB2641B3A200208011 /* QuizViewController.swift */; };
@@ -46,7 +46,7 @@
 		5211AD3E261F83BB00CBDF97 /* QuizService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizService.swift; sourceTree = "<group>"; };
 		5211AD41261F847700CBDF97 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		5211AD44261FB21800CBDF97 /* QuizFunFactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizFunFactView.swift; sourceTree = "<group>"; };
-		5228737F2645704E003D11F0 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
+		5228737F2645704E003D11F0 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		5228738626459A8F003D11F0 /* QuestionTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTrackerView.swift; sourceTree = "<group>"; };
 		524637A5264097F100208011 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		524637AB2641B3A200208011 /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
@@ -120,7 +120,6 @@
 				527256A9261CDD850006555E /* QuizCell.swift */,
 				5211AD44261FB21800CBDF97 /* QuizFunFactView.swift */,
 				524637BE26456CB400208011 /* CurrentQuestionView.swift */,
-				5228737F2645704E003D11F0 /* QuestionView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -128,6 +127,7 @@
 		524637982640944900208011 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5228737F2645704E003D11F0 /* QuestionViewController.swift */,
 				5228738626459A8F003D11F0 /* QuestionTrackerView.swift */,
 				5211AD41261F847700CBDF97 /* TableViewController.swift */,
 				527256722617CECF0006555E /* QuizzesViewController.swift */,
@@ -352,7 +352,7 @@
 				527256872618F9C00006555E /* PopQuizButton.swift in Sources */,
 				527256732617CECF0006555E /* QuizzesViewController.swift in Sources */,
 				5228738726459A8F003D11F0 /* QuestionTrackerView.swift in Sources */,
-				522873802645704E003D11F0 /* QuestionView.swift in Sources */,
+				522873802645704E003D11F0 /* QuestionViewController.swift in Sources */,
 				5272567E2618EE6C0006555E /* PopQuizLabel.swift in Sources */,
 				527256812618EFAC0006555E /* ColorsUtil.swift in Sources */,
 				5272568D2618FFF00006555E /* DataServiceProtocol.swift in Sources */,
